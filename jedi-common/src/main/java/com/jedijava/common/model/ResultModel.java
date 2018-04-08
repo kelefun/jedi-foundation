@@ -25,6 +25,9 @@ public class ResultModel<T> implements Serializable {
     public boolean isSuccess() {
         return success;
     }
+    public boolean getSuccess() {
+        return success;
+    }
 
     public void setSuccess(boolean success) {
         this.success = success;
@@ -59,5 +62,11 @@ public class ResultModel<T> implements Serializable {
         ResultModel<T> r = new ResultModel<T>();
         r.setData(data);
         return r;
+    }
+    public static ResultModel error(ResultCode resultCode) {
+        ResultModel result = new ResultModel();
+        result.setSuccess(false);
+        result.setResultCode(resultCode);
+        return result;
     }
 }
