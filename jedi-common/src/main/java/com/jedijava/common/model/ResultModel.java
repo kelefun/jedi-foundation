@@ -25,9 +25,6 @@ public class ResultModel<T> implements Serializable {
     public boolean isSuccess() {
         return success;
     }
-    public boolean getSuccess() {
-        return success;
-    }
 
     public void setSuccess(boolean success) {
         this.success = success;
