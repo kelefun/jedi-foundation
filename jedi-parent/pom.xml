@@ -28,6 +28,13 @@
                 <version>2.5</version>
                 <scope>provided</scope>
             </dependency>
+            <!-- 自动化插件 比如 getter,setter的自动生成 -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.20</version>
+                <scope>provided</scope>
+            </dependency>
 
             <dependency>
                 <groupId>com.alibaba</groupId>
