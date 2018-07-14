@@ -69,21 +69,21 @@ public class HandleExceptionResolver extends SimpleMappingExceptionResolver {
 			if (commonException.getResultCode() != null) {
 				resultCode = commonException.getResultCode();
 			} else {
-				resultCode = DefaultResultCode.SYSTEM_ERROR_UNKOWN;
+				resultCode = DefaultResultCode.SYSTEM_ERROR_UNKNOWN;
 				resultCode.setMsg(commonException.getMessage());
 			}
 		} else if (ex instanceof DataAccessException) {
 			resultCode = DefaultResultCode.SYSTEM_ERROR_DAO;
 		} else if (ex instanceof RuntimeException) {
-			resultCode = DefaultResultCode.SYSTEM_ERROR_UNKOWN;
+			resultCode = DefaultResultCode.SYSTEM_ERROR_UNKNOWN;
 		} else if (ex instanceof MissingServletRequestParameterException) {
-			resultCode = DefaultResultCode.ILLEGAL_ARGUMENT;
+			resultCode = DefaultResultCode.SPRING_MISSING_PARAM_ERROR;
 		} else if (ex instanceof HttpRequestMethodNotSupportedException) {
 			resultCode = DefaultResultCode.REQUEST_ERROR_INVALID_METHOD;
 		} else if (ex instanceof BindException) { // spring接收参数异常
-			resultCode = DefaultResultCode.ILLEGAL_ARGUMENT;
+			resultCode = DefaultResultCode.SPRING_BIND_ERROR;
 		} else {
-			resultCode = DefaultResultCode.SYSTEM_ERROR_UNKOWN;
+			resultCode = DefaultResultCode.SYSTEM_ERROR_UNKNOWN;
 		}
 		logger.error(ex);
 		String viewName = determineViewName(ex, request);
