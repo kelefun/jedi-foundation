@@ -8,11 +8,13 @@ package com.jedijava.common.result;
 public enum DefaultResultCode implements ResultCode {
     SUCCESS(200, "success"),
     //常用通用异常,格式-100-0-*
-    ILLEGAL_ARGUMENT(10000,"非法参数"),
+    ILLEGAL_ARGUMENT(10000,"参数异常"),
 
-    SYSTEM_ERROR_UNKOWN(10001,"未知系统错误"),
+    SYSTEM_ERROR_UNKNOWN(10001,"未知系统错误"),
 
-    SYSTEM_ERROR_DAO(10002,"数据层异常出错"),
+    SYSTEM_ERROR_DAO(10002,"数据层访问移除"),
+    SPRING_BIND_ERROR(10003,"数据类型绑定异常"),
+    SPRING_MISSING_PARAM_ERROR(10004,"参数缺失"),
 
     //权限相关 格式-100-1-*
     AUTH_ERROR_NOT_RIGHT(10011,"没有权限"),
