@@ -10,47 +10,64 @@ import java.io.Serializable;
 
 /**
  * @author liukaiyang
- * @date 2018/4/8 11:17
+ * @date 2018/4/10 11:17
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResultModel<T> implements Serializable {
 
     private static final long serialVersionUID = -5868923397737067940L;
 
-    private boolean success=true;
+    /**
+     * 请求结果是否成功
+     */
+    private Boolean success=true;
+    /**
+     * 请求结果信息说明
+     */
+    private String message="成功";
+    /**
+     * code:响应码
+     */
+    private String code="200";
+    /**
+     * 请求结果数据对象
+     */
     private T data;
+
     @JsonIgnore
     private ResultCode resultCode= DefaultResultCode.SUCCESS;
 
-    public boolean isSuccess() {
+    @JsonProperty("s")
+    public Boolean getSuccess(){
         return success;
     }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
+    @JsonProperty("m")
+    public String getMessage(){
+        return resultCode.getMsg();
     }
-
+    @JsonProperty("d")
     public T getData() {
         return data;
+    }
+    @JsonProperty("c")
+    public int getCode(){
+        return  resultCode.getCode();
+    }
+    public void setSuccess(Boolean success){
+        this.success=success;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public void setData(T data) {
         this.data = data;
     }
 
-    public ResultCode getResultCode() {
-        return resultCode;
-    }
-
-    @JsonProperty("code")
-    public int getCode(){
-        return  resultCode.getCode();
-    }
-
-    @JsonProperty("msg")
-    public String getMsg(){
-        return resultCode.getMsg();
-    }
 
     public void setResultCode(ResultCode resultCode) {
         this.resultCode = resultCode;
@@ -62,7 +79,7 @@ public class ResultModel<T> implements Serializable {
     }
     public static ResultModel error(ResultCode resultCode) {
         ResultModel result = new ResultModel();
-        result.setSuccess(false);
+        result.setSuccess(Boolean.FALSE);
         result.setResultCode(resultCode);
         return result;
     }
